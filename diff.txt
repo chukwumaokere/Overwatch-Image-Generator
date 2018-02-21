@@ -1,0 +1,10 @@
+15d14
+< echo $user;
+45,47d43
+< if (!$_REQUEST["bnet"]){
+< 	$workingname = $clean;
+< }
+177c173
+< imagepng($bg, "images/$clean.png");
+---
+> imagepng($bg);
