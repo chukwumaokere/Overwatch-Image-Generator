@@ -29,8 +29,10 @@ $stars = $starsrArray[0][0];
 preg_match('/(http)\S+unlocks\S+(g)/' , $contents, $avatarArray, PREG_OFFSET_CAPTURE);
 $avatar = $avatarArray[0][0];
 
-preg_match('/(https)\S+(portrait)\S+(g)/', $contents, $heroArray, PREG_OFFSET_CAPTURE);
+//previous code: preg_match('/(https)\S+(portrait)\S+(g)/', $contents, $heroArray, PREG_OFFSET_CAPTURE);
+preg_match('/competitive\s{\s+\S+https\S+portrait\S+g/', $contents, $heroArray, PREG_OFFSET_CAPTURE);
 $hero = $heroArray[0][0];
+$hero = strpbrk($hero, 'h');
 
 preg_match('/u-vertical-center">\S+(<)/', $contents, $levelArray, PREG_OFFSET_CAPTURE);
 $levelString = $levelArray[0][0];
