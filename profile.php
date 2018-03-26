@@ -31,6 +31,9 @@ $avatar = $avatarArray[0][0];
 
 //previous code: preg_match('/(https)\S+(portrait)\S+(g)/', $contents, $heroArray, PREG_OFFSET_CAPTURE);
 preg_match('/competitive\s{\s+\S+https\S+portrait\S+g/', $contents, $heroArray, PREG_OFFSET_CAPTURE);
+if (!$heroArray || $heroArray == NULL || $heroArray == '' || empty($heroArray)){
+	preg_match('/(https)\S+(portrait)\S+(g)/', $contents, $heroArray, PREG_OFFSET_CAPTURE);
+}
 $hero = $heroArray[0][0];
 $hero = strpbrk($hero, 'h');
 
