@@ -17,17 +17,29 @@ elseif (!$user){
 //echo $user;
 $url = "https://playoverwatch.com/en-us/career/pc/us/$clean";
 $contents = file_get_contents($url);
+//print_r($contents);
+
 preg_match('/(http)\S+rank\S+(g)/' , $contents, $rankArray, PREG_OFFSET_CAPTURE);
 $rank = $rankArray[0][0];
 
-preg_match('/(http)\S+Border\S+(g)/' , $contents, $borderArray, PREG_OFFSET_CAPTURE);
-$border = $borderArray[0][0];
+preg_match('/(player-level).+(png)/' , $contents, $borderArray, PREG_OFFSET_CAPTURE);
+$border_d = $borderArray[0][0];
 
-preg_match('/(http)\S+Rank\S+(g)/' , $contents, $starsrArray, PREG_OFFSET_CAPTURE);
-$stars = $starsrArray[0][0];
+preg_match('/(https)\S+(png)/' , $border_d, $border_dArray, PREG_OFFSET_CAPTURE);
+$border = $border_dArray[0][0];
 
-preg_match('/(http)\S+unlocks\S+(g)/' , $contents, $avatarArray, PREG_OFFSET_CAPTURE);
-$avatar = $avatarArray[0][0];
+preg_match('/(player-rank).+(png)/' , $contents, $starsrArray, PREG_OFFSET_CAPTURE);
+$stars_d = $starsrArray[0][0];
+
+preg_match('/(https)\S+(png)/' , $stars_d, $stars_dArray, PREG_OFFSET_CAPTURE);
+$stars = $stars_dArray[0][0];
+
+//preg_match('/(http)\S+unlocks\S+(g)/' , $contents, $avatarArray, PREG_OFFSET_CAPTURE); //deprecated
+preg_match('/(player-portrait).+(png)/' , $contents, $avatarArray, PREG_OFFSET_CAPTURE);
+$avatar_d = $avatarArray[0][0];
+
+preg_match('/(https)\S+(png)/' , $avatar_d, $avatar_dArray, PREG_OFFSET_CAPTURE);
+$avatar = $avatar_dArray[0][0];
 
 //previous code: preg_match('/(https)\S+(portrait)\S+(g)/', $contents, $heroArray, PREG_OFFSET_CAPTURE);
 preg_match('/competitive\s{\s+\S+https\S+portrait\S+g/', $contents, $heroArray, PREG_OFFSET_CAPTURE);
